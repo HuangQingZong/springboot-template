@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 3600s
+
+spring:
+  profiles:
+    active: '@activatedProperties@'
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      INDENT_OUTPUT: true
+  datasource:
+    hikari:
+      max-lifetime: 200000
+  servlet:
+    multipart:
+      max-file-size: 10MB #限制单个文件大小
+      max-request-size: 50MB #限制请求总量
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-not-delete-value: 1
+      logic-delete-value: 0
+  mapper-locations: classpath:com/template/springboot/mapper/xml/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  config: classpath:logback-spring.xml
+
+
+
